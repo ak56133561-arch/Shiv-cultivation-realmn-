@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="theme-color" content="#17100b">
+<title>Shiva Cultivation System</title>
+<style>
+:root{--bg:#090b15;--panel:#121729;--gold:#ffd66b;--saffron:#ff762e;--cream:#f5f3ff;--muted:#a7b2d3;--green:#65f0bb;--cyan:#58dcff;--violet:#a58bff}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 50% -10%,#27356b 0,#10152a 35%,#080a12 78%);color:var(--cream);font-family:system-ui,-apple-system,"Noto Sans Devanagari",sans-serif}
+header{padding:24px 18px 18px;text-align:center;border-bottom:1px solid #5b69a8;background:linear-gradient(180deg,#202b50dd,#0b1020ee);box-shadow:0 8px 32px #0008}
+.om{font-size:34px;color:var(--gold)}h1{font-size:22px;letter-spacing:1px;margin:3px 0;color:#ffe6a1;text-shadow:0 0 18px #ffbb4c66}header p{margin:4px 0;color:#e2c39b;font-size:12px;letter-spacing:2px}
+main{max-width:760px;margin:auto;padding:14px;display:grid;gap:12px}.panel{border:1px solid #3d4b7a;border-radius:16px;padding:16px;background:linear-gradient(145deg,#1b2340f2,#101525f5);box-shadow:0 8px 28px #0008,inset 0 1px #ffffff0c}
+h2{font-size:16px;color:var(--gold);margin:0 0 12px;text-shadow:0 0 14px #ffca5b30}.hero{text-align:center;background:radial-gradient(ellipse at 50% 0,#3a3970,#171d39 52%,#101426)}
+.shiva{font-size:46px;margin:2px}.subtitle{color:var(--muted);font-size:13px}.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.stat{background:linear-gradient(145deg,#0c1120,#151b31);border:1px solid #35436f;border-radius:12px;padding:12px}.stat small{display:block;color:var(--muted)}.num{font-size:22px;color:#ffe49a;font-weight:800;text-shadow:0 0 16px #ffca5b30}
+.progress{height:10px;background:#070a13;border:1px solid #414d7b;border-radius:99px;overflow:hidden;margin:10px 0}.bar{height:100%;width:0;background:linear-gradient(90deg,#ff762e,#ffca5b,#58dcff);box-shadow:0 0 14px #58dcff55;transition:width .2s}
+.row{display:flex;gap:8px;align-items:center;justify-content:space-between;flex-wrap:wrap}.btn{border:1px solid #8c9ee8;border-radius:12px;background:linear-gradient(135deg,#7856d9,#334caa 60%,#1d8cb0);box-shadow:0 4px 18px #263fa955;color:white;padding:12px 14px;font-weight:700;font-size:14px;cursor:pointer}.btn.secondary{background:linear-gradient(135deg,#1a2340,#12182b);color:#dce7ff;border-color:#4c6097}.btn:active{transform:scale(.98)}.count{font-size:34px;color:#ffdf91;font-weight:800;text-align:center;margin:10px 0}
+.realm-list{display:grid;gap:7px}.realm{display:flex;gap:10px;align-items:center;padding:9px 10px;border-radius:10px;border:1px solid #303c66;background:#111629;font-size:13px}.realm.active{border-color:#ffd66b;background:linear-gradient(90deg,#3a3155,#182644);box-shadow:0 0 16px #a58bff25}.realm .n{border:1px solid #b98b46;border-radius:50%;width:28px;height:28px;display:grid;place-items:center;color:#ffe08a;flex-shrink:0;box-shadow:0 0 10px #ffd66b33}.realm .target{margin-left:auto;color:#dfb66c;white-space:nowrap}
+.quest{padding:12px;border:1px solid #34416e;border-radius:12px;margin:8px 0;background:linear-gradient(120deg,#151b31,#101426)}.quest h3{font-size:14px;margin:0 0 4px;color:#ffe49a}.quest p{font-size:13px;color:var(--muted);margin:4px 0 10px}.history{font-size:13px;color:#e6d2b1;line-height:1.7}.foot{text-align:center;color:#8e9ac2;font-size:12px;padding:12px}
+input{background:#100c09;color:var(--cream);border:1px solid #43558e;border-radius:8px;padding:10px;width:100%;font-size:15px}
+@media(min-width:620px){main{grid-template-columns:1fr 1fr}.wide{grid-column:1/-1}}
+</style>
+</head>
+<body>
+<header><div class="om">ॐ</div><h1>SHIVA CULTIVATION SYSTEM</h1><p>CULTIVATION RPG  •  DAILY QUESTS  •  REALM AWAKENING</p></header>
+<main>
+<section class="panel hero wide"><div class="shiva">🔱</div><h2>हर हर महादेव</h2><div class="subtitle">YOUR CULTIVATION JOURNEY BEGINS</div><p class="subtitle">इष्टदेव: भगवान शिव · मंत्र: ॐ नमः शिवाय</p></section>
+<section class="panel wide"><h2>◈ CULTIVATION HUD / SYSTEM STATUS</h2><div class="stats">
+<div class="stat"><small>वर्तमान Realm</small><div class="num" id="currentRealm">Basic Cultivation</div></div>
+<div class="stat"><small>कुल जप</small><div class="num" id="total">0</div></div>
+<div class="stat"><small>पहला लक्ष्य</small><div class="num">1,50,000</div></div>
+<div class="stat"><small>शेष जप</small><div class="num" id="remaining">1,50,000</div></div>
+</div><div class="progress"><div class="bar" id="bar"></div></div><div class="row"><span id="percent">0% पूर्ण</span><span id="xp">XP: 0</span></div></section>
+<section class="panel"><h2>◈ MANTRA COUNTER</h2><div class="subtitle" style="text-align:center">ॐ नमः शिवाय</div><div class="count" id="sessionCount">0</div><div class="row"><button class="btn" onclick="add(1)">+1 जप</button><button class="btn secondary" onclick="add(108)">+108 जप</button></div><div class="row" style="margin-top:8px"><button class="btn secondary" onclick="add(1008)">+1,008 जप</button><button class="btn secondary" onclick="undo()">Undo −1</button></div><p class="subtitle">काउंटर में जोड़ने के बाद ही जप की वास्तविक गिनती दर्ज होगी।</p></section>
+<section class="panel"><h2>◈ DAILY QUEST BOARD</h2>
+<div class="quest"><h3>☀ सुबह का जप</h3><p>1,008 बार · ॐ नमः शिवाय</p><button class="btn" id="morningBtn" onclick="completeQuest('morning')">Morning Complete</button></div>
+<div class="quest"><h3>☾ शाम का जप</h3><p>1,008 बार · ॐ नमः शिवाय</p><button class="btn" id="eveningBtn" onclick="completeQuest('evening')">Evening Complete</button></div>
+<div class="quest"><h3>🪷 ध्यान Quest</h3><p>5 मिनट शांत बैठकर सहज श्वास पर ध्यान दें।</p><button class="btn secondary" id="medBtn" onclick="completeQuest('meditation')">ध्यान पूरा</button></div>
+</section>
+<section class="panel wide"><h2>◈ REALM ASCENSION</h2><div class="realm-list" id="realms"></div></section>
+<section class="panel"><h2>◈ Reminder Settings</h2><p class="subtitle">Android पर रोज़ के नोटिफिकेशन के लिए इस प्रोजेक्ट को Android Studio में खोलकर native notification permission और scheduler जोड़ें। यह बेसिक वेब-व्यू अभी स्वयं OS notifications नहीं भेजता।</p><div class="quest"><label for="morningTime">सुबह का समय</label><input id="morningTime" type="time" value="07:00"></div><div class="quest"><label for="eveningTime">शाम का समय</label><input id="eveningTime" type="time" value="20:00"></div><button class="btn secondary" onclick="saveTimes()">समय सेव करें</button><div class="subtitle" id="timeStatus" style="margin-top:8px"></div></section>
+<section class="panel"><h2>◈ QUEST LOG</h2><div class="history" id="history">अभी कोई Quest दर्ज नहीं हुआ।</div><div class="row" style="margin-top:10px"><button class="btn secondary" onclick="exportData()">डेटा Export</button><button class="btn secondary" onclick="resetData()">Reset Data</button></div></section>
+<section class="panel wide"><h2>◈ साधना नियम</h2><div class="history">• शुरुआत 0 जप से।<br>• पहला लक्ष्य: 1,50,000 जप।<br>• सुबह 1,008 + शाम 1,008 जप का दैनिक लक्ष्य।<br>• केवल पूरा किया गया जप ही दर्ज करें।<br>• यह गेम-जैसा प्रगति ट्रैकर है; Realm और XP काल्पनिक गेम तत्व हैं, अलौकिक शक्ति की गारंटी नहीं।<br>• डेटा इस डिवाइस के ब्राउज़र स्टोरेज में सेव होता है।</div></section>
+</main><div class="foot">ॐ नमः शिवाय · हर हर महादेव</div>
+<script>
+const realmData=[
+["Basic Cultivation Realm",150000],["Foundation Realm",300000],["Aura Tempering Realm",900000],["Heaven Boundary Realm",1800000],["Perfect Heaven Realm",3600000],["Saint Realm",5400000],["Saint King Realm",7200000],["Nirvana Realm",9000000]
+];
+let state={total:0,session:0,xp:0,history:[],quests:{},times:{morning:"07:00",evening:"20:00"}};
+try{const s=JSON.parse(localStorage.getItem("shivaCultivationState")||"null");if(s)state={...state,...s};}catch(e){}
+function fmt(n){return Number(n||0).toLocaleString("en-IN")}
+function save(){localStorage.setItem("shivaCultivationState",JSON.stringify(state));render()}
+function add(n){state.total+=n;state.session+=n;state.xp+=Math.max(1,Math.floor(n/10));state.history.unshift(new Date().toLocaleString("hi-IN")+" — "+fmt(n)+" जप जोड़े");state.history=state.history.slice(0,30);save()}
+function undo(){if(state.session<=0)return;state.session--;state.total=Math.max(0,state.total-1);state.xp=Math.max(0,state.xp-1);state.history.unshift("Undo — 1 जप घटाया");save()}
+function completeQuest(which){const day=new Date().toISOString().slice(0,10);const key=day+"-"+which;if(state.quests[key]){alert("यह Quest आज पहले ही दर्ज है।");return}state.quests[key]=true;const labels={morning:"Morning Quest complete",evening:"Evening Quest complete",meditation:"ध्यान Quest complete"};state.history.unshift(new Date().toLocaleString("hi-IN")+" — "+labels[which]);if(which!=="meditation"){state.total+=1008;state.xp+=100;state.history.unshift("Quest bonus: 1,008 जप दर्ज");}else state.xp+=25;save()}
+function render(){let t=Math.max(0,state.total);document.getElementById("total").textContent=fmt(t);document.getElementById("remaining").textContent=fmt(Math.max(0,150000-t));document.getElementById("percent").textContent=(Math.min(100,t/150000*100)).toFixed(2)+"% पूर्ण";document.getElementById("bar").style.width=Math.min(100,t/150000*100)+"%";document.getElementById("xp").textContent="XP: "+fmt(state.xp);document.getElementById("sessionCount").textContent=fmt(state.session);let idx=0;realmData.forEach((r,i)=>{if(t>=r[1])idx=Math.min(i+1,realmData.length-1)});document.getElementById("currentRealm").textContent=realmData[Math.min(idx,realmData.length-1)][0];document.getElementById("realms").innerHTML=realmData.map((r,i)=>`<div class="realm ${i===idx?'active':''}"><span class="n">${i+1}</span><span>${r[0]}</span><span class="target">${fmt(r[1])} जप</span></div>`).join("");document.getElementById("history").innerHTML=state.history.length?state.history.slice(0,12).map(x=>"• "+x).join("<br>"):"अभी कोई Quest दर्ज नहीं हुआ।";let day=new Date().toISOString().slice(0,10);["morning","evening","meditation"].forEach(k=>{let el=document.getElementById({morning:"morningBtn",evening:"eveningBtn",meditation:"medBtn"}[k]);if(el){el.disabled=!!state.quests[day+"-"+k];if(el.disabled)el.textContent="आज पूरा ✓";}});document.getElementById("morningTime").value=state.times.morning;document.getElementById("eveningTime").value=state.times.evening}
+function saveTimes(){state.times={morning:document.getElementById("morningTime").value||"07:00",evening:document.getElementById("eveningTime").value||"20:00"};save();document.getElementById("timeStatus").textContent="समय इस डिवाइस पर सेव हो गया। OS नोटिफिकेशन के लिए native Android scheduling अभी जोड़ना होगा।"}
+function exportData(){const blob=new Blob([JSON.stringify(state,null,2)],{type:"application/json"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="shiva-cultivation-backup.json";a.click();URL.revokeObjectURL(a.href)}
+function resetData(){if(confirm("सारा सेव डेटा मिटाकर जप 0 करना है?")){state={total:0,session:0,xp:0,history:[],quests:{},times:{morning:"07:00",evening:"20:00"}};save()}}
+render();
+</script></body></html>
